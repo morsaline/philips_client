@@ -17,7 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
 }) => {
   return (
-    <div className="bg-black text-white rounded-md p-10 shadow-md flex flex-col h-full">
+    <div className="bg-black text-white rounded-md md:p-5  p-3 shadow-md flex flex-col h-full">
       {/* Product Image */}
       <div className="relative w-full aspect-[4/3]">
         <Image

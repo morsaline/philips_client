@@ -8,13 +8,22 @@ import {
 import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import bgImage from "@/assets/bgall/FooterBg.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0E0E0E] text-white py-10 px-6 md:px-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8">
+    <footer
+      className="bg-[#0E0E0E] text-white py-12 px-4 sm:px-6 lg:px-16"
+      style={{
+        backgroundImage: `url(${bgImage.src})`,
+        backgroundSize: "100% 100%",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Top Section */}
+      <div className="max-w-[90rem] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-gray-700 pb-8">
         {/* Quick Links */}
-        <div>
+        <div className="flex flex-col items-center sm:items-center lg:items-start text-center sm:text-center lg:text-left">
           <h3 className="text-sm font-semibold mb-4">QUICK LINKS</h3>
           <ul className="space-y-2 text-sm text-gray-300">
             <li>
@@ -36,7 +45,7 @@ export default function Footer() {
         </div>
 
         {/* Contact */}
-        <div>
+        <div className="flex flex-col items-center sm:items-center lg:items-start text-center sm:text-center lg:text-left">
           <h3 className="text-sm font-semibold mb-4">CONTACT</h3>
           <p className="text-gray-300 text-sm mb-1">
             Philip@cupsoflovdiboard.com
@@ -45,42 +54,25 @@ export default function Footer() {
         </div>
 
         {/* Mail For Customer Board */}
-        <div className="relative">
+        <div className="flex flex-col items-center text-center">
           <h3 className="text-sm font-semibold mb-4">
             MAIL FOR CUSTOMER BOARD
           </h3>
-          <button className="flex items-center gap-2 bg-[#E53935] text-white font-semibold text-sm py-2 px-6 rounded-full hover:bg-[#ff4b48] transition">
+          <button className="flex items-center gap-2 bg-[#E53935] text-white font-semibold text-sm py-2 px-6 rounded-full hover:bg-[#ff4b48] transition mb-6">
             Send Mail <Mail className="w-4 h-4" />
           </button>
-
-          {/* Decorative Wine Glass Illustration (optional SVG or background image) */}
-          <div className="absolute -bottom-6 left-8 opacity-10">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="60"
-              height="80"
-              fill="none"
-              stroke="white"
-              strokeWidth="1"
-              viewBox="0 0 24 24"
-            >
-              <path d="M8 2h8v6a4 4 0 0 1-8 0V2z" />
-              <path d="M12 14v7" />
-              <path d="M8 22h8" />
-            </svg>
-          </div>
         </div>
 
         {/* Download App */}
-        <div>
+        <div className="flex flex-col items-center text-center">
           <h3 className="text-sm font-semibold mb-4">DOWNLOAD APP</h3>
           <p className="text-gray-300 text-sm mb-3">
             You can find us on your mobile
           </p>
 
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-4 justify-center">
             <Image
-              src="/qr.png" // replace with your QR image path
+              src="/qr.png"
               alt="QR Code"
               width={60}
               height={60}
@@ -103,22 +95,22 @@ export default function Footer() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 justify-center ">
             <Link href="#" className="hover:text-[#E53935] transition">
-              <FacebookFilled className="w-4 h-4" />
+              <FacebookFilled className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
             <Link href="#" className="hover:text-[#E53935] transition">
-              <InstagramFilled className="w-4 h-4" />
+              <InstagramFilled className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
             <Link href="#" className="hover:text-[#E53935] transition">
-              <YoutubeFilled className="w-4 h-4" />
+              <YoutubeFilled className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
           </div>
         </div>
       </div>
 
       {/* Bottom Section */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-6 text-xs text-gray-400">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center pt-6 text-xs sm:text-sm text-gray-400 gap-2 sm:gap-0">
         <p>© Copyright 2024. Redwan Latif. All rights reserved.</p>
         <Link href="#" className="hover:text-white transition">
           Terms & Conditions

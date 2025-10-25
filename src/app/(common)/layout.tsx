@@ -21,7 +21,7 @@ export default function RootLayout({
       <NextUiProvider>
         <ReduxProvider>
           <>
-            <div className="min-h-screen grid grid-rows-[auto_1fr_auto] max-w-[100vw] overflow-hidden">
+            <div className="min-h-screen ">
               <Navbar />
 
               <div className="">{children}</div>

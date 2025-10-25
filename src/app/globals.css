@@ -48,6 +48,64 @@ input[type="number"] {
   -webkit-background-clip: text;
   background-clip: text;
 }
+.custom-table .ant-table-thead > tr > th {
+  background-color: #e6e6e6; /* Tailwind gray-800 equivalent */
+  color: #7d323c; /* Tailwind gray-50 equivalent */
+  font-weight: 600;
+}
+
+/* In your global CSS */
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #f56565 !important; /* Tailwind red-500 */
+  border-color: #f56565 !important;
+  color: white !important;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell:hover .ant-picker-cell-inner {
+  border-color: #f56565 !important;
+}
+
+
+.romanticSwiper .swiper-slide {
+  position: relative;
+  transform: scale(0.7);
+  opacity: 0.3;
+  filter: blur(2px) brightness(0.5);
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.romanticSwiper .swiper-slide-prev {
+  transform: translateX(-150px) scale(0.8);
+  opacity: 0.6;
+  filter: blur(2px) brightness(0.7);
+  z-index: 2;
+}
+
+.romanticSwiper .swiper-slide-next {
+  transform: translateX(150px) scale(0.8);
+  opacity: 0.6;
+  filter: blur(2px) brightness(0.7);
+  z-index: 2;
+}
+
+.romanticSwiper .swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+  z-index: 10;
+}
+
+.romanticSwiper .swiper-pagination-bullet {
+  background-color: #666 !important;
+  opacity: 0.6;
+}
+
+.romanticSwiper .swiper-pagination-bullet-active {
+  background-color: #e11d48 !important;
+  opacity: 1;
+}
+
 @keyframes l21 {
   100% {
     background-position: left;

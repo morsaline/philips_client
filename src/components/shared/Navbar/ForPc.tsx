@@ -11,15 +11,12 @@ import { cn } from "@nextui-org/react";
 const ForPc = () => {
   return (
     <div
-      className=" bg-transparent"
+      className=" bg-transparent bg-cover bg-center bg-no-repeat border-b"
       style={{
         backgroundImage: `url("/Rectangle 63.png")`,
-        backgroundSize: "100% 100%",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="container hidden lg:flex py-3 items-center justify-between ">
+      <div className=" max-w-[90rem] mx-auto hidden lg:flex py-3 items-center justify-between ">
         <div className="flex  items-center gap-5 text-base text-black">
           <NavMenu />
         </div>

@@ -4,6 +4,7 @@ import { Minus, Plus, Trash2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import productImg from "@/assets/Products/05D1951D-F93F-4E49-87BC-9987CAF9EAC1 2.jpg";
+import bgImage from "@/assets/bgall/ProductCheckout.png";
 
 export default function CheckoutPage() {
   const demoProducts = [
@@ -47,10 +48,9 @@ export default function CheckoutPage() {
     <section
       className="  overflow-hidden py-14 px-6 md:px-16"
       style={{
-        backgroundImage: `url("/Rectangle 63.png")`,
+        backgroundImage: `url(${bgImage.src})`,
         backgroundSize: "100% 100%",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
       }}
     >
       {/* dotted background */}

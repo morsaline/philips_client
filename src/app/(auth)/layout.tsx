@@ -1,13 +1,18 @@
 "use client";
 
+import Footer from "@/components/shared/Footer/Footer";
 import { ReactNode } from "react";
 
-const layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="h-screen overflow-hidden">
-      <div className="h-[90vh] overflow-y-auto">{children}</div>
+    <div className="min-h-screen flex flex-col justify-between ">
+      {/* Main content */}
+      <main className="">{children}</main>
+
+      {/* Footer always visible at bottom */}
+      <Footer />
     </div>
   );
 };
 
-export default layout;
+export default Layout;

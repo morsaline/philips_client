@@ -33,14 +33,14 @@ export default function RootLayout({
       <head></head>
       <body
         suppressHydrationWarning={true}
-        className={`${inter.variable} antialiased !bg-white`}
+        className={`${inter.variable} antialiased !bg-white !text-black`}
       >
         <NextUiProvider>
           <ReduxProvider>
             <ConfigProvider
               theme={{
                 token: {
-                  colorPrimary: "#0BA8CC",
+                  colorPrimary: "#FF6B6B",
                   colorInfo: "#0BA8CC",
                   colorSuccess: "#3ECF8E",
                   colorWarning: "#FAAD14",
@@ -55,9 +55,9 @@ export default function RootLayout({
                 },
                 components: {
                   Button: {
-                    colorPrimary: "#0BA8CC",
-                    colorPrimaryHover: "#0aa0bd",
-                    colorPrimaryActive: "#088aa3",
+                    colorPrimary: "#FF6B6B",
+                    colorPrimaryHover: "##FF6B6B",
+                    colorPrimaryActive: "#FF6B6B",
 
                     colorSuccess: "#3ECF8E",
                     colorSuccessHover: "#36b87d",
@@ -75,9 +75,7 @@ export default function RootLayout({
               }}
             >
               <>
-                <div className="min-h-screen grid grid-rows-[auto_1fr_auto] text-title max-w-[100vw] overflow-hidden">
-                  {children}
-                </div>
+                <div className="min-h-screen ">{children}</div>
                 <ScrollToTopButton />
                 <Toaster />
               </>

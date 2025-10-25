@@ -1,15 +1,15 @@
 // pages/payment.tsx
 import Image from "next/image";
+import bgImage from "@/assets/bgall/ProductCheckout.png";
 
 export default function PaymentPage() {
   return (
     <div
       className=" text-[#1e1e1e] font-sans"
       style={{
-        backgroundImage: `url("/Rectangle 63.png")`,
+        backgroundImage: `url(${bgImage.src})`,
         backgroundSize: "100% 100%",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="max-w-[90rem] mx-auto px-4 py-10">

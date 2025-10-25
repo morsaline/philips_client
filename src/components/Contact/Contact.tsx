@@ -13,29 +13,41 @@ const Contact = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="max-w-[90rem] mx-auto">
+        {" "}
+        <h2 className="text-3xl font-bold text-gray-900">CONTACT US</h2>
+      </div>
+      <div className="max-w-[90rem] mx-auto flex gap-10">
         {/* Left Column - Contact Info */}
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold text-gray-900">CONTACT US</h2>
+        <div className="bg-white p-6 rounded-lg shadow-lg w-[30%]">
           <div className="mt-6 space-y-4">
-            <div className="flex items-center space-x-3">
-              <span className="text-lg text-gray-600">
-                <Phone />
-              </span>
+            <div className="border-b pb-3">
               <div>
-                <p className="text-lg font-medium">Call Us</p>
+                <div className="flex items-center gap-3 my-3">
+                  <span className="p-2 rounded-full bg-red-600 text-white flex items-center justify-center shadow-sm">
+                    <Phone className="w-4 h-4" />
+                  </span>
+                  <div className="text-xl font-semibold text-gray-900">
+                    Call To Us
+                  </div>
+                </div>
+
                 <p className="text-gray-500">
                   We are available 24/7, 7 days a week.
                 </p>
                 <p className="text-gray-600">Phone: +8801611122222</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <span className="text-lg text-gray-600">
-                <Mail />
-              </span>
+            <div className="">
+              <div className="flex items-center gap-3 my-3">
+                <span className="p-2 rounded-full bg-red-600 text-white flex items-center justify-center shadow-sm">
+                  <Mail className="w-4 h-4" />
+                </span>
+                <div className="text-xl  font-semibold text-gray-900">
+                  Write To Us
+                </div>
+              </div>
               <div>
-                <p className="text-lg font-medium">Write To Us</p>
                 <p className="text-gray-500">
                   Fill out our form and we will contact you within 24 hours.
                 </p>
@@ -47,12 +59,12 @@ const Contact = () => {
         </div>
 
         {/* Right Column - Contact Form */}
-        <div className="bg-white p-6  rounded-lg shadow-lg">
+        <div className="bg-white p-6  rounded-lg shadow-lg w-[70%]">
           <form>
             <div className="space-y-8 flex-col flex justify-between ">
-              <div className="flex gap-2">
+              <div className="flex gap-2 w-full">
                 {" "}
-                <div>
+                <div className="w-full">
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700"
@@ -67,7 +79,7 @@ const Contact = () => {
                     className="w-full bg-[#f1f1f1] placeholder-gray-500 text-black px-4 py-3 focus:outline-none"
                   ></input>
                 </div>
-                <div>
+                <div className="w-full">
                   <label
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
@@ -82,7 +94,7 @@ const Contact = () => {
                     className="w-full bg-[#f1f1f1] placeholder-gray-500 text-black px-4 py-3 focus:outline-none"
                   />
                 </div>
-                <div>
+                <div className="w-full">
                   <label
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700"

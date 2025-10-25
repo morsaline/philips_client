@@ -5,6 +5,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 import productImg from "@/assets/Products/productImg.png";
+import bgImage from "@/assets/bgall/ProductCheckout.png";
 import Link from "next/link";
 import { FaShopify } from "react-icons/fa";
 
@@ -19,7 +20,14 @@ export default function ProductDetails() {
   ];
 
   return (
-    <section className="bg-[#fffaf6] relative overflow-hidden py-12 px-4 md:px-16">
+    <section
+      className="bg-[#fffaf6] relative overflow-hidden py-12 px-4 md:px-16"
+      style={{
+        backgroundImage: `url(${bgImage.src})`,
+        backgroundSize: "100% 100%",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 ">
         {/* LEFT: Product Image Gallery */}
         <div className="relative">
