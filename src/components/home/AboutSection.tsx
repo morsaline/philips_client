@@ -18,25 +18,29 @@ export default function AboutSection() {
       }}
     >
       {/* ===== Top Section ===== */}
-      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8  space-y-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0">
+        <div className="flex  justify-between items-start sm:items-center gap-4 sm:gap-6 py-8 px-8">
           <div>
-            <p className="text-red-500 uppercase text-sm font-semibold tracking-wide">
+            <p className="text-red-500 text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide uppercase">
               Discover the
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 uppercase">
-              About Us
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-1 sm:mt-2 text-white uppercase">
+              About us
             </h1>
           </div>
 
-          <button className="relative group text-white px-6 sm:px-8 py-3 sm:py-4 font-medium flex items-center gap-2 border border-gray-300 overflow-hidden">
-            <span className="relative z-10">Explore More</span>
-            <ArrowRight className="relative z-10 text-lg sm:text-xl" />
-            <span className="absolute top-0 left-0 h-[1px] bg-black w-0 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-            <span className="absolute top-0 right-0 w-[1px] bg-black h-0 group-hover:h-full transition-all duration-300 ease-in-out delay-100"></span>
-            <span className="absolute bottom-0 right-0 h-[1px] bg-black w-0 group-hover:w-full transition-all duration-300 ease-in-out delay-200"></span>
-            <span className="absolute bottom-0 left-0 w-[1px] bg-black h-0 group-hover:h-full transition-all duration-300 ease-in-out delay-300"></span>
+          <button className="relative group overflow-hidden mt-4 sm:mt-0 bg-transparent hover:bg-gray-200 text-white hover:text-black px-4 sm:px-6 md:px-8 py-2 sm:py-3 font-medium flex items-center gap-2 border border-gray-300 transition-all duration-300 rounded-md">
+            <span className="relative z-10 text-xs sm:text-sm md:text-base">
+              Explore More
+            </span>
+            <ArrowRight className="relative z-10 text-sm sm:text-base md:text-lg" />
+
+            {/* Animated borders */}
+            <span className="absolute top-0 left-0 h-[1px] w-0 bg-black group-hover:w-full transition-all duration-300 ease-in-out"></span>
+            <span className="absolute top-0 right-0 w-[1px] h-0 bg-black group-hover:h-full transition-all duration-300 ease-in-out delay-100"></span>
+            <span className="absolute bottom-0 right-0 h-[1px] w-0 bg-black group-hover:w-full transition-all duration-300 ease-in-out delay-200"></span>
+            <span className="absolute bottom-0 left-0 w-[1px] h-0 bg-black group-hover:h-full transition-all duration-300 ease-in-out delay-300"></span>
           </button>
         </div>
 
@@ -81,7 +85,7 @@ export default function AboutSection() {
         </div>
 
         {/* ===== Bottom Section ===== */}
-        <div className="border-t border-[#2b2b2b] pt-10">
+        <div className="border-t border-[#2b2b2b] ">
           <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-0">
             {/* Left Text */}
             <div className="flex flex-col justify-center gap-4 border-b lg:border-b-0 lg:border-r border-[#2b2b2b] p-6 lg:p-10 w-full lg:w-[70%]">

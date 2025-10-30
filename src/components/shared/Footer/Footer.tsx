@@ -9,6 +9,9 @@ import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import bgImage from "@/assets/bgall/FooterBg.png";
+import qrCoode from "@/assets/bgall/Qr Code.png";
+import googlePlayStore from "@/assets/bgall/GooglePlay.png";
+import applePlayStore from "@/assets/bgall/AppStore.png";
 
 export default function Footer() {
   return (
@@ -72,7 +75,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-3 mb-4 justify-center">
             <Image
-              src="/qr.png"
+              src={qrCoode}
               alt="QR Code"
               width={60}
               height={60}
@@ -80,13 +83,13 @@ export default function Footer() {
             />
             <div className="flex flex-col gap-2">
               <Image
-                src="/google-play.png"
+                src={googlePlayStore}
                 alt="Google Play"
                 width={100}
                 height={30}
               />
               <Image
-                src="/app-store.png"
+                src={applePlayStore}
                 alt="App Store"
                 width={100}
                 height={30}
