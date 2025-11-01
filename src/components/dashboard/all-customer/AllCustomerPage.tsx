@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Table, Dropdown, Input, DatePicker } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { EllipsisOutlined } from "@ant-design/icons";
+
 import dayjs from "dayjs";
 import AppPagination from "@/components/shared/pagination/AppPagination";
 import { BsThreeDotsVertical } from "react-icons/bs";

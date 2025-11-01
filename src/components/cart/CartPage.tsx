@@ -70,6 +70,7 @@ export default function CartPage() {
               <div
                 className="bg-white py-10 px-5"
                 style={{ boxShadow: "-4px 4px 12px rgba(0, 0, 0, 0.5)" }}
+                key={item.id}
               >
                 <div className="relative w-[100px] h-[100px] flex-shrink-0 p-2 rounded-md overflow-hidden">
                   <Image

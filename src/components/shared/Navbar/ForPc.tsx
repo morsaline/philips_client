@@ -1,12 +1,11 @@
 "use client";
 import logo from "@/assets/logo/logo.png";
-import MyButton from "@/components/ui/MyButton/MyButton";
-import { Button } from "antd";
+
+
 import Image from "next/image";
 import Link from "next/link";
-import { FaUserCircle } from "react-icons/fa";
+
 import NavMenu from "./NavMenu";
-import { cn } from "@nextui-org/react";
 
 const ForPc = () => {
   return (

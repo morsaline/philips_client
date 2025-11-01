@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   Dropdown,
@@ -9,12 +9,11 @@ import {
   Button,
   Menu,
   MenuProps,
+  Modal,
 } from "antd";
-import { EllipsisOutlined } from "@ant-design/icons";
-import AppPagination from "@/components/shared/pagination/AppPagination";
-import type { ColumnsType } from "antd/es/table";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { Modal } from "antd";
+import type { ColumnsType } from "antd/es/table";
+import AppPagination from "@/components/shared/pagination/AppPagination";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,12 +34,12 @@ interface Product {
 const AllProductPage: React.FC = () => {
   const allData: Product[] = Array.from({ length: 20 }).map((_, i) => ({
     key: i.toString(),
-    productName: `Product ${i + 1}`,
-    productSource: i % 2 === 0 ? "Shopify" : "Manual Entry",
-    price: `$${(Math.random() * 100).toFixed(2)}`,
+    productName: `Love Board ${i + 1}`,
+    productSource: i % 2 === 0 ? "Shopify Integration" : "Manual Entry",
+    price: `$${(Math.random() * 100 + 100).toFixed(0)}`,
     order: Math.floor(Math.random() * 30) + 1,
     totalSales: `$${(Math.random() * 1000).toFixed(2)}`,
-    image: "/images/sample-product.jpg", // replace with real image path
+    image: "/images/sample-product.jpg",
     description:
       "A digital agency is a company that leverages digital channels to grow their clients’ brands online.",
   }));
@@ -56,124 +55,48 @@ const AllProductPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 7;
 
-  // View Details
+  // Filtering
+  useEffect(() => {
+    let filtered = allData;
+
+    if (searchText.trim()) {
+      const q = searchText.toLowerCase();
+      filtered = filtered.filter(
+        (item) =>
+          item.productName.toLowerCase().includes(q) ||
+          item.productSource.toLowerCase().includes(q)
+      );
+    }
+
+    if (selected === "Shopify") {
+      filtered = filtered.filter((d) => d.productSource.includes("Shopify"));
+    } else if (selected === "Manual") {
+      filtered = filtered.filter((d) => d.productSource.includes("Manual"));
+    }
+
+    setFilteredData(filtered);
+    setCurrentPage(1);
+  }, [searchText, selected]);
+
   const handleViewDetails = (record: Product) => {
     setSelectedProduct(record);
     setIsModalVisible(true);
   };
 
-  // Edit Details
   const handleEditDetails = (record: Product) => {
     console.log("Editing:", record);
-    // Optionally: redirect or open a form modal
   };
 
-  // Set as Home Page
   const handleSetAsHomePage = (record: Product) => {
     console.log("Set as home page:", record);
-    // Optionally: update a flag in your state
   };
 
-  // Remove
   const handleRemove = (key: string) => {
-    const updated = filteredData.filter((item) => item.key !== key);
-    setFilteredData(updated);
+    setFilteredData((prev) => prev.filter((item) => item.key !== key));
   };
-
-  const handleSearch = (value: string) => {
-    setSearchText(value);
-    const query = value.trim().toLowerCase();
-    if (!query) {
-      setFilteredData(allData);
-      return;
-    }
-
-    const filtered = allData.filter(
-      (item) =>
-        item.productName.toLowerCase().includes(query) ||
-        item.productSource.toLowerCase().includes(query)
-    );
-    setFilteredData(filtered);
-    setCurrentPage(1);
-  };
-
-  const start = (currentPage - 1) * pageSize;
-  const paginatedData = filteredData.slice(start, start + pageSize);
-
-  const columns: ColumnsType<Product> = [
-    { title: "Product Name", dataIndex: "productName", key: "productName" },
-    {
-      title: "Product Source",
-      dataIndex: "productSource",
-      key: "productSource",
-    },
-    { title: "Price", dataIndex: "price", key: "price" },
-    { title: "Order", dataIndex: "order", key: "order" },
-    { title: "Total Sales", dataIndex: "totalSales", key: "totalSales" },
-    {
-      title: "Action",
-      key: "action",
-      render: (_, record) => (
-        <Dropdown
-          menu={{
-            items: [
-              {
-                key: "view",
-                label: (
-                  <span
-                    className="text-gray-700 hover:text-black"
-                    onClick={() => handleViewDetails(record)}
-                  >
-                    View Details
-                  </span>
-                ),
-              },
-              {
-                key: "edit",
-                label: (
-                  <span
-                    className="text-gray-700 hover:text-black"
-                    onClick={() => handleEditDetails(record)}
-                  >
-                    Edit Details
-                  </span>
-                ),
-              },
-              {
-                key: "set-home",
-                label: (
-                  <span
-                    className="text-gray-700 hover:text-black"
-                    onClick={() => handleSetAsHomePage(record)}
-                  >
-                    Set as Home Page
-                  </span>
-                ),
-              },
-              {
-                key: "remove",
-                label: (
-                  <span
-                    className="bg-[#ffebeb] text-[#d9383a] px-3 py-1 rounded-md block hover:bg-[#ffdede]"
-                    onClick={() => handleRemove(record.key)}
-                  >
-                    Remove
-                  </span>
-                ),
-              },
-            ],
-          }}
-          trigger={["click"]}
-        >
-          <Button icon={<BsThreeDotsVertical />} />
-        </Dropdown>
-      ),
-    },
-  ];
 
   const handleSelect: MenuProps["onClick"] = ({ key }) => {
     setSelected(key);
-    console.log("Selected source:", key); // You can filter data here
   };
 
   const items: MenuProps["items"] = ["Shopify", "Manual"].map((option) => ({
@@ -190,19 +113,120 @@ const AllProductPage: React.FC = () => {
       </span>
     ),
   }));
-  const handleAddProduct = () => {
-    // Implement the logic to show the "Add Product" modal or redirect to add product page
-    alert("Add Product Button Clicked");
-  };
+
+  const start = (currentPage - 1) * pageSize;
+  const paginatedData = filteredData.slice(start, start + pageSize);
+
+  // Shared Action Menu
+  const actionItems = (record: Product): MenuProps["items"] => [
+    {
+      key: "view",
+      label: (
+        <span onClick={() => handleViewDetails(record)}>View Details</span>
+      ),
+    },
+    {
+      key: "edit",
+      label: (
+        <span onClick={() => handleEditDetails(record)}>Edit Details</span>
+      ),
+    },
+    {
+      key: "set-home",
+      label: (
+        <span onClick={() => handleSetAsHomePage(record)}>
+          Set as Home Page
+        </span>
+      ),
+    },
+    {
+      key: "remove",
+      label: (
+        <span
+          className="bg-[#ffebeb] text-[#d9383a] px-3 py-1 rounded-md block hover:bg-[#ffdede]"
+          onClick={() => handleRemove(record.key)}
+        >
+          Remove
+        </span>
+      ),
+    },
+  ];
+
+  // Manual Table Columns
+  const shopifyColumns: ColumnsType<Product> = [
+    {
+      title: "Product Name",
+      dataIndex: "productName",
+      key: "productName",
+      render: (text) => (
+        <span className="font-medium text-gray-800">{text}</span>
+      ),
+    },
+    {
+      title: "Product Source",
+      dataIndex: "productSource",
+      key: "productSource",
+    },
+    { title: "Price", dataIndex: "price", key: "price" },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Dropdown menu={{ items: actionItems(record) }} trigger={["click"]}>
+          <Button icon={<BsThreeDotsVertical />} />
+        </Dropdown>
+      ),
+    },
+  ];
+
+  // Shopify Table Columns (with image)
+  const manualColumns: ColumnsType<Product> = [
+    {
+      title: "Product Name",
+      dataIndex: "productName",
+      key: "productName",
+      render: (_, record) => (
+        <div className="flex items-center gap-3">
+          <Image
+            src={record.image}
+            alt={record.productName}
+            width={40}
+            height={40}
+            className="rounded border object-cover"
+          />
+          <span className="font-medium text-gray-800">
+            {record.productName}
+          </span>
+        </div>
+      ),
+    },
+    {
+      title: "Product Source",
+      dataIndex: "productSource",
+      key: "productSource",
+    },
+    { title: "Price", dataIndex: "price", key: "price" },
+    { title: "Order", dataIndex: "order", key: "order" },
+    { title: "Total Sales", dataIndex: "totalSales", key: "totalSales" },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Dropdown menu={{ items: actionItems(record) }} trigger={["click"]}>
+          <Button icon={<BsThreeDotsVertical />} />
+        </Dropdown>
+      ),
+    },
+  ];
 
   return (
     <div className="bg-white border border-[#e5e7eb] rounded-lg shadow-sm p-4 mt-4">
-      {/* Header Section */}
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <h1 className="text-lg font-semibold text-gray-800">All Products</h1>
       </div>
 
-      {/* Filters Section */}
+      {/* Filters */}
       <div className="flex flex-wrap gap-2 justify-between items-center my-5">
         <div className="flex gap-3">
           <RangePicker
@@ -231,16 +255,14 @@ const AllProductPage: React.FC = () => {
         </div>
 
         <div className="flex gap-4">
-          {" "}
           <Input.Search
             placeholder="Search Product"
             allowClear
             value={searchText}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value)}
             className="w-44 sm:w-56 rounded-md"
           />
           <Link href={"/dashboard/add-product"}>
-            {" "}
             <Button type="primary" className="w-40">
               Add Product +
             </Button>
@@ -248,9 +270,9 @@ const AllProductPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Table Section */}
+      {/* Conditional Table */}
       <Table
-        columns={columns}
+        columns={selected === "Shopify" ? shopifyColumns : manualColumns}
         dataSource={paginatedData}
         pagination={false}
         bordered
@@ -273,6 +295,7 @@ const AllProductPage: React.FC = () => {
         />
       </div>
 
+      {/* Modal */}
       <Modal
         title="Product Details"
         open={isModalVisible}
@@ -284,26 +307,26 @@ const AllProductPage: React.FC = () => {
         {selectedProduct && (
           <div className="flex flex-col sm:flex-row gap-4">
             <Image
-              src={selectedProduct.image || "/default-image.jpg"} // fallback if no image
+              src={selectedProduct.image || "/default-image.jpg"}
               alt={selectedProduct.productName}
-              width={192} // 48 * 4 (for 48px width * 4 because Tailwind’s sm:w-48 is 12rem = 192px)
-              height={192} // keep square aspect ratio
+              width={192}
+              height={192}
               className="rounded-md border object-cover"
             />
-            <div className="flex-1">
-              <div className="mb-2">
+            <div className="flex-1 space-y-2">
+              <div>
                 <strong>📦 Product Name:</strong> {selectedProduct.productName}
               </div>
-              <div className="mb-2">
+              <div>
                 <strong>🔗 Source:</strong> {selectedProduct.productSource}
               </div>
-              <div className="mb-2">
+              <div>
                 <strong>💲 Price:</strong> {selectedProduct.price}
               </div>
-              <div className="mb-2">
+              <div>
                 <strong>📈 Total Sales:</strong> {selectedProduct.totalSales}
               </div>
-              <div className="mt-4 text-sm text-gray-700">
+              <div className="text-sm text-gray-700 pt-2">
                 <strong>📝 Description:</strong> <br />
                 {selectedProduct.description}
               </div>

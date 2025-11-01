@@ -3,7 +3,7 @@
 import { Input } from "antd";
 import Link from "next/link";
 import logo from "@/assets/logo/logo.png";
-import { FcGoogle } from "react-icons/fc";
+
 import bgImage from "@/assets/bgall/loginBg.png";
 import Image from "next/image";
 // import "antd/dist/reset.css";

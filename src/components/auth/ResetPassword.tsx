@@ -3,7 +3,7 @@
 import { Input } from "antd";
 import bgImage from "@/assets/bgall/loginBg.png";
 import logo from "@/assets/logo/logo.png";
-import Link from "next/link";
+
 import Image from "next/image";
 // import "antd/dist/reset.css";
 

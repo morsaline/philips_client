@@ -82,7 +82,7 @@ const SubmitCode = () => {
             Verify
           </button>
           <div className="flex justify-between mt-4 text-sm text-center">
-            <p className="text-gray-500">Don't receive the code?</p>
+            <p className="text-gray-500">Don&apost receive the code?</p>
             <button className="text-blue-500">Resend</button>
           </div>
         </div>
